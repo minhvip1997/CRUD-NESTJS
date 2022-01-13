@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { CreatePostDto,EditPostDto } from './dtos';
 import { PostService } from './post.service';
 
@@ -25,9 +26,13 @@ export class PostController {
         console.log(typeof id)
         return this.postService.getById(id);
     }
+
+
     @Post()
+    @UseInterceptors(FileInterceptor(''))
+    @ApiConsumes('multipart/form-data')
     createOne(@Body() dto: CreatePostDto){
-        // console.log(dto)
+        console.log(dto)
         return this.postService.createOne(dto);
     }
 
