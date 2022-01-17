@@ -1,7 +1,7 @@
 import { ApiOkResponse, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Transform } from "class-transformer";
 import { IsArray, IsBoolean, isBoolean, IsEnum, isEnum, IsString, ValidateNested } from "class-validator";
-import { EnumToString } from "src/helpers/enumToString";
+import { EnumToString } from "src/common/helpers/enumToString";
 import { Post } from "../entities/post.entity";
 import { PostCategory } from "../enums";
 
